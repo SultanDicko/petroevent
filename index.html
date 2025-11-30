@@ -102,11 +102,12 @@
 
     <!-- NAVIGATION (Style Flottant) -->
     <nav class="fixed w-full z-50 top-0 px-4 py-4">
-        <div class="glass-card rounded-full container mx-auto px-6 py-3 flex justify-between items-center max-w-5xl">
+        <div class="glass-card rounded-full container mx-auto px-6 py-3 flex justify-between items-center max-w-5xl relative">
             <a href="#" class="flex items-center gap-2">
                 <img src="Petro Évent logo.jpg" alt="Logo" class="h-10 w-auto rounded-full border-2 border-brand-gold">
             </a>
             
+            <!-- Menu Desktop -->
             <div class="hidden md:flex items-center gap-8 font-bold uppercase text-sm tracking-widest">
                 <a href="#event" class="hover:text-brand-ice transition text-shadow">L'Event</a>
                 <a href="#lineup" class="hover:text-brand-ice transition">Line Up</a>
@@ -115,11 +116,28 @@
                     <span class="skew-x-[10deg] inline-block">Billetterie</span>
                 </a>
             </div>
+
+            <!-- Bouton Menu Mobile -->
+            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl focus:outline-none">
+                <i class="ph-bold ph-list"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile (Caché par défaut) -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full px-4 z-40">
+            <div class="glass-card rounded-2xl p-6 flex flex-col gap-6 text-center shadow-2xl bg-black/80 backdrop-blur-xl border border-white/10">
+                <a href="#event" class="text-xl font-bold uppercase tracking-widest text-white hover:text-brand-gold transition" onclick="toggleMenu()">L'Event</a>
+                <a href="#lineup" class="text-xl font-bold uppercase tracking-widest text-white hover:text-brand-gold transition" onclick="toggleMenu()">Line Up</a>
+                <a href="#gallery" class="text-xl font-bold uppercase tracking-widest text-white hover:text-brand-gold transition" onclick="toggleMenu()">Souvenirs</a>
+                <a href="#tickets" class="bg-brand-gold text-black px-8 py-3 rounded-full font-black uppercase mx-auto inline-block hover:bg-white transition" onclick="toggleMenu()">
+                    Billetterie
+                </a>
+            </div>
         </div>
     </nav>
 
     <!-- HERO SECTION (Inspiré Affiche 1 - Ice Blue) -->
-    <header class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden" id="event">
         <!-- Background dynamique -->
         <div class="absolute inset-0 bg-ice-gradient"></div>
         <div class="absolute inset-0 bg-hero-pattern opacity-10"></div>
@@ -287,7 +305,7 @@
                 <div class="glass-card rounded-3xl p-8 relative overflow-hidden hover:border-brand-ice/50 transition duration-300 group">
                     <div class="absolute top-0 right-0 bg-brand-ice text-black text-xs font-bold px-4 py-1 rounded-bl-xl">POPULAIRE</div>
                     <h3 class="font-display text-3xl mb-2 text-white">PASS UNIQUE</h3>
-                    <div class="text-5xl font-black text-brand-ice mb-6">10.000 <span class="text-xl text-white">F</span></div>
+                    <div class="text-5xl font-black text-brand-ice mb-6">20.000 <span class="text-xl text-white">F</span></div>
                     
                     <ul class="space-y-4 mb-8 text-gray-300">
                         <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-brand-ice"></i> Accès Open BBQ</li>
@@ -333,6 +351,26 @@
         </div>
     </footer>
 
+    <script>
+        // Script pour le menu mobile
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            menu.classList.toggle('hidden');
+            // Change l'icône
+            const icon = btn.querySelector('i');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('ph-x');
+                icon.classList.add('ph-list');
+            } else {
+                icon.classList.remove('ph-list');
+                icon.classList.add('ph-x');
+            }
+        }
+
+        btn.addEventListener('click', toggleMenu);
+    </script>
+
 </body>
 </html>
-
